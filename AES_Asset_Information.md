@@ -259,21 +259,19 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Notes:** Not applicable to lattice towers. Only impactful when linear appurtenances with **Exposed To Wind** = "Y" included in analysis.  Load case azimuth should be set to the worst case direction (that which results in the largest applied forces).  Can be thought of as a counterclockwise rotation of applied wind direction (with 0 degrees corresponding to wind from the "top of page" or North to South) or a clockwise rotation of the pole and external linear appurtenances with the wind direction coming from "top of page" or north to south.  Generally acceptable to set load case azimuth orthogonal to coax azimuth if possible (eg if coax located at 90 and/or 270 degrees, load case azimuth of 0 appropriate).  For failing or near-failing analyses with external coax, azimuth should be calculated using excel spreadsheet to determine worst case. Example: coax exposed to wind with azimuth of 60 degrees, a load case azimuth of 30 degrees would orient the coax perpendicular to the applied wind (common mistake is to use 150 degrees thinking that is perpendicular to the coax azimuth of 60 degrees). 
 
 ### **Correction Factor**
-- **Description:** 
-- **Data Type:** 
+- **Description:** Used to calculate amount of loading reserved on asset.
+- **Data Type:** Number
 - **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Editable:** Yes
+- **Data Source:** Operations/Acquisition Structural Analysis
+- **Notes:** Reserved loading applies to specific carriers only; primarily to Verizon Wireless/Alltel and occasionally to Cellular South Real Estate.  A correction factor (CF) of 1.0 corresponds to a total of 30000 square inches and 2400 lbs of equipment.  Values below or above 1.0 are applied as factors to reduce or increase the carrier's entitled reserve. To calculate the unused reserve, the size/weight of all carrier contracted equipment is summed and subtracted frim the calculated reserved loading entitlement; if this difference is positive then a dummy load is included in the scenario to preeserve the carrier's reserved loading/capacity on the tower.
 
 ### **Unused Reserve Automation**
-- **Description:** 
-- **Data Type:** 
+- **Description:** Toggles automated unused reserve calculation within SAT
+- **Data Type:** Dropdown
 - **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
+- **Editable:** Yes
+- **Engineer Action:** Typically not required.  If Disabled, reserve must be manually calculated and updated in SAT.
 - **Notes:** 
 
 ### **State**
