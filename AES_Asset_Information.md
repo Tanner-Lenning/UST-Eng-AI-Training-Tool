@@ -318,7 +318,7 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Required Field:** Yes
 - **Editable:** Yes
 - **Engineer Action:** Verify accuracy of site exposure category and update as needed.
-- **Data Source:** Google Earth, Jurisdictional Notes, SSCS, Site Parameters excel spreadsheet, TIA Code / ASCE 7 for exposure determination
+- **Data Source:** Google Earth, Jurisdictional Notes, SSCS, Site Parameters excel spreadsheet
 - **Notes:** LOV: B, BC, C, D.  Some jurisdictions may require exposure C or only accept exposure B with a stamped engineering letter providing justification.  Exposure BC is available for intermediate terrain between the discrete cargories  B and C OR C and D.  If exposure BC is used, equivalent Z<sub>0</sub> MUST be calculated using the site parameters excel spreadsheet.
 
 ### **Equivalent Z<sub>0</sub>**
@@ -327,6 +327,7 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Required Field:** Yes, iff Exposure = "BC"
 - **Editable:** Yes
 - **Engineer Action:** Verify calculated value or add value if changing exposure category to BC using site parameters excel spreadsheet.
+- **Data Source:** Google Earth, Site Parameters excel spreadsheet
 - **Data Source:** Site Parameters Spreadsheet, Google Earth, KML file of worst case exposure path used for calculation should be saved in X Drive structural info folder
 
 ### **Topo Factor Procedure**
@@ -335,6 +336,7 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Required Field:** Yes
 - **Editable:** Yes
 - **Engineer Action:** Verify that appropriate method is selected.
+- **Data Source:** SSCS
 - **Notes:** LOV: Method 1, Method 2.  Method 2 corresponds to topography determination using a Site Specific Climatic Study.  Method 1 corresponds to all other cases/sites where a site specific study was not referenced in determining topography.
 
 ### **Feature**
@@ -343,6 +345,7 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Required Field:** Yes
 - **Editable:** Yes
 - **Engineer Action:** Verify that appropriate feature is selected.
+- **Data Source:** Google Earth (Method 1), SSCS and Site Parameters excel spreadsheet (Method 2)
 - **Notes:** LOV: Flat, Flat Topped Hill, Flat Topped Ridge, Hill, Ridge, Rolling Hill, Rolling Ridge, Escarpment. If using topo method 2 with a wind study, the calculated/considered topographic feature may not and need not visually match the topography of the site viewed in Google Earth.
 
 ### **Crest Height**
@@ -351,6 +354,7 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Required Field:** Yes
 - **Editable:** Yes
 - **Engineer Action:** Verify that **Crest Height** matches calculated crest height (Method 2) or measured crest height for worst case direction in Google Earth (Method 1).  Update value as needed and save screenshot of measurement in Google Earth and topo path kml file (Method 1) or Site Parameters excel spreadsheet (Method 2) in structural info folder.
+- **Data Source:** Google Earth (Method 1), SSCS and Site Parameters excel spreadsheet (Method 2)
 - **Notes:** Crest Height must = 0 if **Feature** = "Flat".  Crest Height must be greater than 0 if **Feature** <> "Flat".  Calculated slope, **Crest Height** / **Crest Length**, MUST be greater than 0.1 or AES analysis will not consider wind speed up from topography (K<sub>zt</sub> will be calculated as 1.0) with no warning or indication to the user.
 
 ### **Crest Length**
@@ -359,6 +363,52 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Required Field:** Yes
 - **Editable:** Yes
 - **Engineer Action:** Verify that **Crest Length** matches calculated crest length (Method 2) or measured crest length for worst case direction in Google Earth (Method 1).  Update value as needed and save screenshot of measurement in Google Earth and topo path kml file (Method 1) or Site Parameters excel spreadsheet (Method 2) in structural info folder.
+- **Data Source:** Google Earth (Method 1), SSCS and Site Parameters excel spreadsheet (Method 2)
+- **Notes:** **Crest Length** is calculated as 2*L<sub>h</sub> where L<sub>h</sub> is the horizontal distance from top of feature to the vertical midpoint of the feature.  A common mistake is for engineers to measure crest length as the horizontal distance from the base to top of the feature.  Calculated slope, Crest Height / Crest Length, MUST be greater than 0.1 or AES analysis will not consider wind speed up from topography (Kzt will be calculated as 1.0) with no warning or indication to the user.
+
+### **Distance from Apex**
+- **Description:** Horizontal distance from the apex of the topographic feature considered to the tower site used in calculation of K<sub>zt</sub>.
+- **Data Type:** Number
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify that **Distance from Apex** matches measured value in Google Earth (Method 1) or the distance from crest value considered in the Site Parameters spreadsheet (Method 2).  Update value as needed and save screenshot of measurement in Google Earth and topo path kml file (Method 1) or Site Parameters excel spreadsheet (Method 2) in structural info folder.
+- **Data Source:** Google Earth
+- **Notes:** Tower sites are often constructed at the top of a topographic feature, so **Distance from Apex** is often 0.  Larger values of **Distance from Apex** decrease the horizontal distance factor K3 which reduces the calculate value of K<sub>zt</sub>. If **Distance from Apex** is relatively large in relation to the **Crest Height** and **Crest Length**, the calculated horizontal distance factor K3 will be 0 and the AES analysis will not consider wind speed up from topography (Kzt will be calculated as 1.0) with no warning or indication to the user.  The horizontal distance factor K3 is a constant and does not change with elevation, so there is no need or reason to use a **Distance from Apex** value other than 0 when calculating topography using Method 2.
+
+### **Upwind/Downwind**
+- **Description:** Indicates if the asset is located beyond (Downwind) or before (Upwind) of the topographic feature considered.  Used in calculating K<sub>zt</sub>.
+- **Data Type:** Dropdown
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify that appropriate option is selected based on the site location relative to the crest height for the worst case wind direction considered for topography.
+- **Data Source:** Google Earth
+- **Notes:** If **Distance from Apex** = 0, the horizontal distance factor K3 will equal 1.0 regardless of **Upwind/Downwind** selection.  For symmetrical topographic features (hills/ridges and their variants), the equation used for calculating K3 is identical for the Upwind and Downwind condition.  Only the K3 and Kzt values for the Escarpment togopgraphic feature are impacted by the **Upwind/Downwind** parameter and only when **Distance from Apex** > 0.
+
+### **Seismic Site Class**
+- **Description:** Asset seismic site class designation based on the expected spectral response of the soil.
+- **Data Type:** Dropdown
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify that appropriate option is selected. Spectral response parameters from the ASCE 7 Hazard Tool should be taken using the appropriate Site Class input.
+- **Data Source:** GEO
+- **Notes:** Unless specified in the Geotechnical report, **Seismic Site Class** should be Default.  Site class will not be specified in the GEO for the majority of assets.  Assets in seismically active areas such as CA may have **Seismic Site Class** given in the GEO.
+
+### **Seismic S<sub>DS</sub> Coefficient**
+- **Description:** Seismic spectral acceleration at short periods
+- **Data Type:** Number
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify that accuracy of value using ASCE 7 Hazard Tool
+- **Data Source:** ASCE 7 Hazard Tool
+- **Notes:** Values given in ASCE 7 Hazard Tool depend on **Seismic Site Class**.  Make sure to select the corresponding site class input in the Hazard Tool.  If analysis is failing in Seismic load case, check GEO to see if **Seismic Site Class** is specified.
+
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Data Source:**
 - **Notes:**
 
 ### ** **
@@ -367,6 +417,7 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Required Field:**
 - **Editable:**
 - **Engineer Action:**
+- **Data Source:**
 - **Notes:**
 
 ### ** **
@@ -375,6 +426,7 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Required Field:**
 - **Editable:**
 - **Engineer Action:**
+- **Data Source:**
 - **Notes:**
 
 ### ** **
@@ -383,7 +435,25 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Required Field:**
 - **Editable:**
 - **Engineer Action:**
+- **Data Source:**
 - **Notes:**
 
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Data Source:**
+- **Notes:**
+
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Data Source:**
+- **Notes:**
 
 
