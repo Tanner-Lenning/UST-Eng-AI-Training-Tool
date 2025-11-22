@@ -232,31 +232,31 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Notes:** Typically there is no SSCS on file and field is NULL/Empty.  In rare cases, there may be an SSCS on file that is not considered in the structural analysis due to the site being located in a hurrican region (**Windspeed**, V, > 115 mph) and ineligible per TIA code.
 
 ### **Long-Period Transition Period**
-- **Description:** 
-- **Data Type:** 
-- **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
+- **Description:** Site Specific transition point on seismic design response spectrum.  Determines what equation is used for calculating spectral reaponse acceleration based on calculated period of the structure.
+- **Data Type:** Number
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify accuracy of value
+- **Data Source:** ASCE 7 Hazard Tool
 - **Notes:** 
 
 ### **Redundancy Factor**
-- **Description:** 
-- **Data Type:** 
-- **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Description:** Factor describing redundancy of seismic force resisting system.
+- **Data Type:** Number
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** None typically required
+- **Data Source:** Tower type
+- **Notes:** Equals 1.0 for pole structures and 1.3 for lattice structures.  Factor modifies horizontal seismic forces.
 
 ### **Load Case Azimuth**
-- **Description:** 
-- **Data Type:** 
+- **Description:** Sets wind direction/pole orientation for monpole loadcases with wind.
+- **Data Type:** Number
 - **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Editable:** Yes
+- **Engineer Action:** Verify value/update as needed.
+- **Data Source:** Coax Mapping, photos, drone model, Monopole Azimuth Calculator excel spreadsheet
+- **Notes:** Not applicable to lattice towers. Only impactful when linear appurtenances with **Exposed To Wind** = "Y" included in analysis.  Load case azimuth should be set to the worst case direction (that which results in the largest applied forces).  Can be thought of as a counterclockwise rotation of applied wind direction (with 0 degrees corresponding to wind from the "top of page" or North to South) or a clockwise rotation of the pole and external linear appurtenances with the wind direction coming from "top of page" or north to south.  Generally acceptable to set load case azimuth orthogonal to coax azimuth if possible (eg if coax located at 90 and/or 270 degrees, load case azimuth of 0 appropriate).  For failing or near-failing analyses with external coax, azimuth should be calculated using excel spreadsheet to determine worst case. Example: coax exposed to wind with azimuth of 60 degrees, a load case azimuth of 30 degrees would orient the coax perpendicular to the applied wind (common mistake is to use 150 degrees thinking that is perpendicular to the coax azimuth of 60 degrees). 
 
 ### **Correction Factor**
 - **Description:** 
