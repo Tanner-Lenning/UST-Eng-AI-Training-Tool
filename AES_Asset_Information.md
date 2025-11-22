@@ -272,35 +272,116 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Required Field:** 
 - **Editable:** Yes
 - **Engineer Action:** Typically not required.  If Disabled, reserve must be manually calculated and updated in SAT.
-- **Notes:** 
+- **Notes:** Hotkey for manual reserve calculation is Alt+U
 
 ### **State**
-- **Description:** 
-- **Data Type:** 
-- **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Description:** State jurisdictional notes
+- **Data Type:** Text
+- **Required Field:** No
+- **Editable:** No
+- **Engineer Action:** Review jurisdictional notes and incorporate into structural analysis as applicable.
 
 ### **County**
-- **Description:** 
-- **Data Type:** 
-- **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Description:** County jurisdictional notes
+- **Data Type:** Text
+- **Required Field:** No
+- **Editable:** No
+- **Engineer Action:** Review jurisdictional notes and incorporate into structural analysis as applicable
+- **Notes:** May only apply if **Permitting Entity** is County
 
 ### **City**
-- **Description:** 
-- **Data Type:** 
-- **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Description:** City jurisdictional notes
+- **Data Type:** Text
+- **Required Field:** No
+- **Editable:** No
+- **Engineer Action:** Review jurisdictional notes and incorporate into structural analysis as applicable
+- **Notes:** May only apply if **Permitting Entity** is City
 
+### **TIA Standard Details**
+- **Description:** Sets TIA code under consideration for all parameters in the **TIA Standard Details** section of Asset Information.
+- **Data Type:** Dropdown
+- **Engineer Action:** Verify that selected code matches the active **TIA Standard** for the asset.
+- **Notes:** LOV: TIA-222-F, TIA-222-G, TIA-222-H, TIA-222-I. Many parameters in the **TIA Standard Details** portion of Asset Information are unique to the selected code while others are shared accross all or multiple standards.  This is denoted in Asset Information by a symbol on the parameter name with a corresponding footnote.
+
+### **Risk Category**
+- **Description:** Designated asset risk category based on function and potential hazard to human life in the event of a failure
+- **Data Type:** Dropdown
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Typically none required. If risk category <> II investigate reason and legitimacy.  Analysis parameters from the ASCE 7 Hazard Tool should be retrieved using the relevant risk category input.
+- **Notes:** LOV: II, III, IV.  
+
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Notes:**
+
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Notes:**
+
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Notes:**
+
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Notes:**
+
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Notes:**
+
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Notes:**
+
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Notes:**
+
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Notes:**
+
+### ** **
+- **Description:**
+- **Data Type:**
+- **Required Field:**
+- **Editable:**
+- **Engineer Action:**
+- **Notes:**
 
 
 
