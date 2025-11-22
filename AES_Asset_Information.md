@@ -308,55 +308,57 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Data Type:** Dropdown
 - **Required Field:** Yes
 - **Editable:** Yes
-- **Engineer Action:** Typically none required. If risk category <> II investigate reason and legitimacy.  Analysis parameters from the ASCE 7 Hazard Tool should be retrieved using the relevant risk category input.
-- **Notes:** LOV: II, III, IV.  
+- **Engineer Action:** Typically none required. If risk category <> II investigate reason and legitimacy.
+- **Data Source:** Jurisdictional notes, check X Drive for saved notes/emails
+- **Notes:** LOV: II, III, IV.  Default risk category is II.  Some jurisdictions require higher risk category if asset is near high occupancy or essential facilities like a school or hospital, or if the asset supports equipment essential for emergency response.  Analysis parameters from the ASCE 7 Hazard Tool should be retrieved using the relevant risk category input.
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
-- **Notes:**
+### **Exposure**
+- **Description:** Asset exposure category used in calculation of K<sub>z<\sub> and K<sub>zt<\sub> wind pressure factors.
+- **Data Type:** Dropdown
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify accuracy of site exposure category and update as needed.
+- **Data Source:** Google Earth, Jurisdictional Notes, SSCS, Site Parameters excel spreadsheet, TIA Code / ASCE 7 for exposure determination
+- **Notes:** LOV: B, BC, C, D.  Some jurisdictions may require exposure C or only accept exposure B with a stamped engineering letter providing justification.  Exposure BC is available for intermediate terrain between the discrete cargories  B and C OR C and D.  If exposure BC is used, equivalent Z<sub>0</sub> MUST be calculated using the site parameters excel spreadsheet.
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
-- **Notes:**
+### **Equivalent Z<sub>0</sub>**
+- **Description:** Calculated surface roughness for use with exposure caregory BC.
+- **Data Type:** Number
+- **Required Field:** Yes, iff Exposure = "BC"
+- **Editable:** Yes
+- **Engineer Action:** Verify calculated value or add value if changing exposure category to BC using site parameters excel spreadsheet.
+- **Data Source:** Site Parameters Spreadsheet, Google Earth, KML file of worst case exposure path used for calculation should be saved in X Drive structural info folder
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
-- **Notes:**
+### **Topo Factor Procedure**
+- **Description:** Specified the procedure/method used to determine site topography
+- **Data Type:** Dropdown
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify that appropriate method is selected.
+- **Notes:** LOV: Method 1, Method 2.  Method 2 corresponds to topography determination using a Site Specific Climatic Study.  Method 1 corresponds to all other cases/sites where a site specific study was not referenced in determining topography.
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
-- **Notes:**
+### **Feature**
+- **Description:** Type of topographic feature considered for structural analysis, used in calculating K<sub>zt</sub>.
+- **Data Type:** Dropdown
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify that appropriate feature is selected.
+- **Notes:** LOV: Flat, Flat Topped Hill, Flat Topped Ridge, Hill, Ridge, Rolling Hill, Rolling Ridge, Escarpment. If using topo method 2 with a wind study, the calculated/considered topographic feature may not and need not visually match the topography of the site viewed in Google Earth.
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
-- **Notes:**
+### **Crest Height**
+- **Description:** Topographic feature measured (Method 1) or calculated (Method 2) crest height used in calculation of K<sub>zt</sub>.
+- **Data Type:** Number
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify that **Crest Height** matches calculated crest height (Method 2) or measured crest height for worst case direction in Google Earth (Method 1).  Update value as needed and save screenshot of measurement in Google Earth and topo path kml file (Method 1) or Site Parameters excel spreadsheet (Method 2) in structural info folder.
+- **Notes:** Crest Height must = 0 if **Feature** = "Flat".  Crest Height must be greater than 0 if **Feature** <> "Flat".  Calculated slope, **Crest Height** / **Crest Length**, MUST be greater than 0.1 or AES analysis will not consider wind speed up from topography (K<sub>zt</sub> will be calculated as 1.0) with no warning or indication to the user.
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
+### **Crest Length**
+- **Description:** Topographic feature measured (Method 1) or calculated (Method 2) crest length used in calculation of K<sub>zt</sub>.
+- **Data Type:** Number
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify that **Crest Length** matches calculated crest length (Method 2) or measured crest length for worst case direction in Google Earth (Method 1).  Update value as needed and save screenshot of measurement in Google Earth and topo path kml file (Method 1) or Site Parameters excel spreadsheet (Method 2) in structural info folder.
 - **Notes:**
 
 ### ** **
