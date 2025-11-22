@@ -155,85 +155,81 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Notes:** LOV: Yes, No, Undetermined.  
 
 ### **Outsource**
-- **Description:** 
-- **Data Type:** 
+- **Description:** Indicates if structural deliveravles require Outsource stamping.
+- **Data Type:** Dropdown
 - **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Editable:** Yes
+- **Engineer Action:** ATC engineers typically should not complete SAs on assets where Outsource stamping is required (Outsource = "Yes").  Confirm with manager vefore proceeding.
+- **Data Source:** Jurisdiction/Permitting Entity
+- **Notes:** LOV: Yes, No, Undetermined.  Certain states require special licensing requirements for stamping.  Rather than cokplete the SA internally and send to Outsource stamping, the SA tasks are typically outsourced in their entirety.
 
 ### **Ignore HMSL**
-- **Description:** 
-- **Data Type:** 
+- **Description:** Toggle to omit wind pressure reductions based on altitude in the structural analysis.
+- **Data Type:** Dropdown
 - **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Editable:** Yes
+- **Data Source:** Jurisdiction/Permitting Entity
+- **Notes:** LOV: Yes, No, Undetermined. Some jurisdictions do not permit wind pressure reductions based on altitude as prescribed in TIA-222.  When value = "Yes" the Ground Elevation Factor, K<sub>e</sub>, equals 1.0 for wind pressure, Q<sub>z</sub>, calculations.
 
 ### **Allowable Capacity**
-- **Description:** 
-- **Data Type:** 
-- **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Description:** Threshold for passing structural result expressed as a percentage.  
+- **Data Type:** Number
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Typically none required.  If Allowable Capacity <> 105% further investigation required to confirm reason and legitimacy.
+- **Data Source:** Jurisdiction/Permitting Entity
+- **Notes:** Typically 105% as prescribed in TIA code.  Some jurisdictions mandate 100%.  May be reduced to 1% by engineering management to flag critical structural defect pending resolution such as corrosion.  Passing SA Result <= Allowable Capacity < Failing SA Result
 
 ### **Automation Candidate**
-- **Description:** 
-- **Data Type:** 
+- **Description:** Flag indicating asset eligibility for structural analysis automation.  
+- **Data Type:** Dropdown
 - **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Editable:** Yes
+- **Engineer Action:** Typically none required.  Engineer can set value to "No" to prevent automated deliverables from running on the asset.  This would be appropriate if an external calculation or analysis is required (ie Excel) or manual changes to the report will be needed.  Always document reason for disabling automation in AES - Notes page for the asset.
+- **Notes:** LOV: Yes, No, Undetermined.  If toggled to "No", all projects on the asset will fail **Instant Determination** and will require manual completion of triage and structural deliverable tasks.
 
 ### **Analysis Engine**
-- **Description:** 
-- **Data Type:** 
-- **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Description:** Indicates the active/preferred software used to perform structural analysis
+- **Data Type:** Dropdown
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** If Non-Standard value (ie <> "SAPS" or "Robot") special training in alternate software required to complete structural analysis.
+- **Data Source:** TOW, previous SA
+- **Notes:** LOV: SAPS, Robot, Concrete, PLS, Risa, TNX, Wood.  AES platform supports the SAPS and Robot analysis engines.  Ither analysis engines require special training with analysis in external application.  Non-Standard analysis softwares are typically reserved for non-standard tower geometries that are not supported by the AES Model interface.
 
 ### **Foundation Analysis Software**
-- **Description:** 
-- **Data Type:** 
+- **Description:** Indicates the method of analyzing the foundation / structure base reactions
+- **Data Type:** Dropdown
 - **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Editable:** Yes
+- **Engineer Action:** Confirm active foundation analysis method is appropriate, update as needed.
+- **Data Source:** TFD, MOD, previous structural
+- **Notes:** LOV: ATC Standard, Used Reaction Compariosn, Excel.  ATC Standard is the preferred analysis method and analyzes the foundation within the AES platform. Used Reactions Comparison, also referred to as ODRs (Original Design Reactions) is only appropriate under the following conditions: structural analysis must be passing, no propsed tower extension, previous ATC structural analysis on file that used reaction comparison, reaction comparison result < 100% (regardless of **Allowable Capacity**). Many assets with asset number like 4##### (part of Verizon Sequoia Acquisition) will be set to use ODRs, but should be changed to ATC Standard and the foundation modelled and analyzed in AES since the foundation was analyzed by ATC at the time of acquisition. Excel foundation analysis typically reserved for non-standard or modified foundations that are not supported in AES  
 
 ### **Fatigue Check**
-- **Description:** 
-- **Data Type:** 
+- **Description:** Toggles fatigue check for monopole structural analysis.
+- **Data Type:** Dropdown
 - **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Editable:** Yes
+- **Engineer Action:** If enabled, engineer MUST perform external fatigue analysis using approved excel tool.  Can be enabled by engineer to reduce structural usage on monopoles.
+- **Notes:** LOV: Disabled, Enabled.  Not applicable to lattice towers (Self Support, Guyed).  When enabled the fatigue loadcase is included in the AES analysis and reduces the **Gust Effect Factor**, G<sub>h<\sub>, as prescribed in TIA-222-I. 
 
 ### **Galloping Check**
-- **Description:** 
-- **Data Type:** 
+- **Description:** Toggles galloping check for lattice (Self Support, Guyed) tower structural analysis.
+- **Data Type:** Dropdown
 - **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Editable:** Yes
+- **Engineer Action:** If enabled, engineer MUST perform external galloping analysis.
+- **Notes:** LOV: Disabled, Enabled.  Galloping check is not currently functional in AES and will be added in a future update.  This field currently has no inpact on the structural analysis and should be ignored until functionality is implemented.
 
 ### **Site Specific Climatic Study Date**
-- **Description:** 
-- **Data Type:** 
-- **Required Field:** 
-- **Editable:** 
-- **Engineer Action:** 
-- **Data Source:** 
-- **Notes:** 
+- **Description:** Lists date of most recent Site Specific Climatic Study (if applicable)
+- **Data Type:** Date
+- **Required Field:** No
+- **Editable:** No
+- **Engineer Action:** If value is not NULL/Empty, engineer ahould expect to use **Topo Method** 2 and verify exposure/topo parametets using SSCS with ATC **Site Parameters** excel spreadsheet.
+- **Data Source:** SSCS file (found in file manager site documents)
+- **Notes:** Typically there is no SSCS on file and field is NULL/Empty.  In rare cases, there may be an SSCS on file that is not considered in the structural analysis due to the site being located in a hurrican region (**Windspeed**, V, > 115 mph) and ineligible per TIA code.
 
 ### **Long-Period Transition Period**
 - **Description:** 
