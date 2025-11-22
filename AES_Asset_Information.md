@@ -400,25 +400,34 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Editable:** Yes
 - **Engineer Action:** Verify that accuracy of value using ASCE 7 Hazard Tool
 - **Data Source:** ASCE 7 Hazard Tool
-- **Notes:** Values given in ASCE 7 Hazard Tool depend on **Seismic Site Class**.  Make sure to select the corresponding site class input in the Hazard Tool.  If analysis is failing in Seismic load case, check GEO to see if **Seismic Site Class** is specified.
+- **Notes:** Values given in ASCE 7 Hazard Tool depend on **Seismic Site Class**.  Make sure to select the corresponding site class input in the Hazard Tool.  If analysis is failing in Seismic load case, check GEO to see if **Seismic Site Class** is specified and update values if applicable.
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
-- **Data Source:**
-- **Notes:**
+### **Seismic S<sub>D1</sub> Coefficient**
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
-- **Data Source:**
-- **Notes:**
+- **Description:** Seismic spectral acceleration at 1 second period
+- **Data Type:** Number
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify that accuracy of value using ASCE 7 Hazard Tool
+- **Data Source:** ASCE 7 Hazard Tool
+- **Notes:** Values given in ASCE 7 Hazard Tool depend on Seismic Site Class. Make sure to select the corresponding site class input in the Hazard Tool. If analysis is failing in Seismic load case, check GEO to see if **Seismic Site Class** is specified and update values if applicable.
+
+### **Annex S**
+- **Description:** Toggle to apply load reductions per TIA-222 Annex S.  Offers 5% reduction in wind force and 15% reduction in ice thickness.
+- **Data Type:** Dropdown
+- **Required Field:** No
+- **Editable:** Yes
+- **Engineer Action:** Toggle to Yes and rerun analysis if structural analysis is failing
+- **Notes:** LOV: Yes, No. If previous ATC analysis used Annex S, it should continue to be used for consistency even if not required to pass.  5% wind load reduction is achieved by reducing the **windspeed** by a factor of (0.95)^0.5 since **wind pressure** is a function of **windspeed** squared.  Not applicable to **Risk Category** III or IV structures.
+
+### **V**
+- **Description:** Basic/design windspeed considered in structural analysis.
+- **Data Type:** Number
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify accuracy of value.
+- **Data Source:** ASCE 7 Hazard Tool, Jurisdictional Notes, State and Local Codes folder
+- **Notes:** Some jurisdictions require higher windspeeds than those reported by the Hazard Tool.  Design wind speed is dependent on **Risk Category**, make sure to use the correct **Risk Category** input in the Hazard Tool.
 
 ### ** **
 - **Description:**
