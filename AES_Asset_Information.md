@@ -447,7 +447,7 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Data Source:** ASCE 7 Hazard Tool, SSCS
 - **Notes:** Asset Information also contains override field for manual override of default (ASCE 7 Hazard Tool) value.  Manual override would be appropriate for calculated **Ice Thickness** from SSCS. **Ice Thickness** affects the calculated ice dead load and increase in structure and appurtenance effective area for applied wind forces in the ice loadcase.
 
-### **V<sub>T</sub>**
+### **VT**
 - **Description:** Tornado windspeed
 - **Data Type:** Number
 - **Required Field:** Yes, iff **Risk Category** III or IV
