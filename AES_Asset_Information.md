@@ -426,43 +426,40 @@ Section Break **Field Name** The label as shown in AES - Asset Information.
 - **Required Field:** Yes
 - **Editable:** Yes
 - **Engineer Action:** Verify accuracy of value.
-- **Data Source:** ASCE 7 Hazard Tool, Jurisdictional Notes, State and Local Codes folder
-- **Notes:** Some jurisdictions require higher windspeeds than those reported by the Hazard Tool.  Design wind speed is dependent on **Risk Category**, make sure to use the correct **Risk Category** input in the Hazard Tool.
+- **Data Source:** ASCE 7 Hazard Tool, Jurisdictional Notes, State and Local Codes folder, SSCS (rarely)
+- **Notes:** Asset Information also contains override field for manual override of default (ASCE 7 Hazard Tool) value.  Manual override would be appropriate for calculated **Windspeed** from SSCS or as a **Jurisdictional Requirement**. Some jurisdictions require higher windspeeds than those reported by the Hazard Tool.  Design wind speed is dependent on **Risk Category**, make sure to use the correct **Risk Category** input in the Hazard Tool.
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
-- **Data Source:**
-- **Notes:**
+### **Ice Windspeed**
+- **Description:** Basic/design windspeed for ice loadcase.
+- **Data Type:** Number
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify accuracy of value.
+- **Data Source:** ASCE 7 Hazard Tool, SSCS
+- **Notes:** Asset Information also contains override field for manual override of default (ASCE 7 Hazard Tool) value.  Manual override would be appropriate for calculated **Ice Windspeed** from SSCS.
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
-- **Data Source:**
-- **Notes:**
+### **Ice Thickness**
+- **Description:** Design ice thickness for ice loadcase.
+- **Data Type:** Number
+- **Required Field:** Yes
+- **Editable:** Yes
+- **Engineer Action:** Verify accuracy of value.
+- **Data Source:** ASCE 7 Hazard Tool, SSCS
+- **Notes:** Asset Information also contains override field for manual override of default (ASCE 7 Hazard Tool) value.  Manual override would be appropriate for calculated **Ice Thickness** from SSCS. **Ice Thickness** affects the calculated ice dead load and increase in structure and appurtenance effective area for applied wind forces in the ice loadcase.
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
-- **Data Source:**
-- **Notes:**
+### **V<sub>T</sub>**
+- **Description:** Tornado windspeed
+- **Data Type:** Number
+- **Required Field:** Yes, iff **Risk Category** III or IV
+- **Editable:** Yes
+- **Engineer Action:** Consult manager or stamper on how to proceed if value is required.
+- **Notes:** Only applicable to **Risk Category** III and IV. AES does not currently support tornado loading.
 
-### ** **
-- **Description:**
-- **Data Type:**
-- **Required Field:**
-- **Editable:**
-- **Engineer Action:**
-- **Data Source:**
-- **Notes:**
+### **Damping Ratio**
+- **Description:** Honestly, I'm not quite sure what this is for, maybe the fatigue check or seismic loads?  Just don't mess with it.
+- **Data Type:** Number
+- **Required Field:** No
+- **Editable:** Yes
+- **Notes:** Always seems to be 0.3%. 
 
 
